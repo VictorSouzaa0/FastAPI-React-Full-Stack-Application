@@ -15,7 +15,7 @@ Assim que criar seu ambiente virtual clqiue "Ctrl" + Shift + P
 - Selecione o ambiente, onde deve estar assim: Python 3.XX.X ('venv':venv)
   Assim que selecionado você pode avançar para o próximo passo.
 
----
+------------------------------------------------------------------------------------------------------------------------
 
 COMANDOS PIP:
 
