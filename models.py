@@ -4,13 +4,15 @@ from tortoise.contrib.pydantic import pydantic_model_creator
 
 class Classroom(Model):
     id = fields.IntField(pk=True)
-    students = fields.CharField(max_length=100,null=False)
+    instructor = fields.CharField(max_length=100,null=False)
 
 class Instructor(Model):
     id = fields.IntField(pk=True)
     fullname = fields.CharField(max_length=255, null=False)
     age = fields.IntField(default=0)
     classroom = fields.CharField(max_length=100)
+    image = fields.CharField(max_length=2048)
+
 
 
 class Student(Model):
@@ -19,6 +21,7 @@ class Student(Model):
     age = fields.IntField(default=0)
     carrer_interest = fields.CharField(max_length=255)
     bosch_area = fields.CharField(max_length=255)
+    image = fields.CharField(max_length=2048)
     
 
 #pydantic_model_creator -  É usado para converter automaticamente os dados tortoise ORM para JSON 
