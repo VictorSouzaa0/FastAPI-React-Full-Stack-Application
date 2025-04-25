@@ -4,24 +4,22 @@ from tortoise.contrib.pydantic import pydantic_model_creator
 
 class Classroom(Model):
     id = fields.IntField(pk=True)
-    name = fields.CharField(max_length=100,null=False)
+    students = fields.CharField(max_length=100,null=False)
 
 class Instructor(Model):
     id = fields.IntField(pk=True)
     fullname = fields.CharField(max_length=255, null=False)
-    age = fields.IntField(null=False)
-    classgroup = fields.ForeignKeyField('models.Classroom',
-    related_name='instructor')
+    age = fields.IntField(default=0)
+    classroom = fields.CharField(max_length=100)
+
 
 class Student(Model):
     id = fields.IntField(pk=True)
     fullname = fields.CharField(max_length=255, null=False)
-    age = fields.IntField(null=False)
+    age = fields.IntField(default=0)
     carrer_interest = fields.CharField(max_length=255)
-
-    instructor = fields.ForeignKeyField('models.Instructor',
-    related_name='students')
-
+    bosch_area = fields.CharField(max_length=255)
+    
 
 #pydantic_model_creator -  É usado para converter automaticamente os dados tortoise ORM para JSON 
 
