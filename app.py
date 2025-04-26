@@ -101,6 +101,7 @@ async def delete_students(student_id: int):
     response = await Student.get(id=student_id).delete()
     return {"status":"ok","data": response}
 
+
 register_tortoise(
     app,
     db_url="sqlite://database.sqlite3",
