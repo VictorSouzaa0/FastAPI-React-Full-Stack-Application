@@ -1,45 +1,20 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Request
 from tortoise.contrib.fastapi import register_tortoise
 from models import student_Pydantic,student_PydanticIn,Student
 from models import instructor_Pydantic,instructor_PydanticIn,Instructor
-from models import class_Pydantic,class_PydanticIn,Classroom
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
+
+template = Jinja2Templates(directory="templates")
+app.mount("/static",StaticFiles(directory="static"), name="static")
+
+
 @app.get('/')
 def index():
     return{"Msg":"go to /docs for the API documentation"}
-
-
-@app.post('/class')
-async def add_class(class_info: class_PydanticIn): # type: ignore
-    class_obj = await Classroom.create(**class_info.dict(exclude_unset=True))
-    response = await class_Pydantic.from_tortoise_orm(class_obj)
-    return {"status":"ok","data" :response}
-
-@app.get('/class')
-async def get_all_class():
-    response = await class_Pydantic.from_queryset(Classroom.all())
-    return{"Status": "ok","data": response}
-
-@app.get('/class/{class_id}')
-async def get_specific_class(class_id: int):
-    response = await class_Pydantic.from_queryset_single(Classroom.get(id=class_id))
-    return {"Status":"ok","data": response}
-
-@app.put('/class/{class_id}')
-async def update_class(class_id:int , update_info: class_PydanticIn): # type: ignore
-    classs = await Classroom.get(id=class_id)
-    update_info = update_info.dict(exclude_unset=True)
-    classs.name = update_info['name']
-    await classs.save()
-    response =  await class_Pydantic.from_tortoise_orm(classs)
-    return {"Status":"ok","data": response}
-
-@app.delete('/class/{class_id}')
-async def delete_class(class_id: int):
-    response = await Classroom.get(id=class_id).delete()
-    return{"Status":"ok","data":response}
-
 
 @app.get('/instructor')
 async def get_all_instructors():
@@ -72,11 +47,13 @@ async def get_all_students():
     response = await student_Pydantic.from_queryset(Student.all())
     return {"Status":"ok","data": response}
 
-@app.get('/students/{students_id}')
-async def get_stuentID(sttudent_id: int):
-    response = await student_Pydantic.from_queryset_single(Student.get(id=sttudent_id))
-    return {"Status":"ok","data": response}
-
+@app.get('/students/{sttudent_id}')
+async def get_stuentID(request: Request,sttudent_id: int):
+    student = await student_Pydantic.from_queryset_single(Student.get(id=sttudent_id))
+    return template.TemplateResponse("student.html",{
+        "request": request,
+        "student": student
+    })
 @app.post('/students')
 async def add_students(students_info: student_PydanticIn):
     student_obj = await Student.create(**students_info.dict(exclude_unset=True))

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>{{ student.fullname}}</title>
+</head>
+<body>
+    <header>
+        <div id="Bar">
+            <img src=" /static/images/374_new-bosch-brand-identity-1.svg" alt="">
+        </div>
+        <section class="nav">
+            <div id="Logo">
+                <img src="/static/images/bosch-logo-simple 1.png" alt="">
+                <img src="/static/images/Digital Solutions.png" alt="">
+            </div>
+            <div id="Class">
+            </div>
+
+        </section>
+    </header>
+    <img src="{{ student.image}}" alt="">
+    <p><Strong>Name:</Strong> {{ student.fullname }}</p>
+    <p><Strong>Age: </Strong>{{ student.age }}</p>
+    <p><Strong>Carrer Interest:</Strong> {{ student.carrer_interest }}</p>
+    <P><Strong>Bosch Area:</Strong> {{ student.bosch_area }}</P>
+    <p><strong>About me:</strong>{{ student.aboutme }}</p>
+</body>
+</html>
