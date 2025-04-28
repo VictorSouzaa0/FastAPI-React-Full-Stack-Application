@@ -3,6 +3,13 @@
     margin: 0;
 }
 
+body{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100px;
+    font-style: normal;
+}
+
 #Bar{
     margin: top;
     display: flex;
@@ -12,3 +19,25 @@
 #Logo{
     margin-top: 27px;
 }
+
+#classroom{
+    margin-top: 37px;
+    margin-bottom: 37px;
+}
+
+#number{
+    margin-right: 40px;
+}
+
+.nav{
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.card{
+    display: flex;
+    justify-content: space-around;
+}
+
+

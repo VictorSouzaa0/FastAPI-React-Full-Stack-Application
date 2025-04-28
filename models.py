@@ -18,7 +18,8 @@ class Student(Model):
     carrer_interest = fields.CharField(max_length=255)
     bosch_area = fields.CharField(max_length=255)
     image = fields.CharField(max_length=2048)
-    digital_solutions = fields.IntField(default=0)
+    course = fields.CharField(max_length=55)
+    class_number = fields.IntField(default=0)
     aboutme = fields.TextField()
 
 #pydantic_model_creator -  É usado para converter automaticamente os dados tortoise ORM para JSON 

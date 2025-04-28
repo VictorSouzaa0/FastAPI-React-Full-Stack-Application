@@ -14,18 +14,25 @@
         <section class="nav">
             <div id="Logo">
                 <img src="/static/images/bosch-logo-simple 1.png" alt="">
-                <img src="/static/images/Digital Solutions.png" alt="">
             </div>
-            <div id="Class">
+            <div id="classroom">
+                <h3>{{ student.course }} {{ student.class_number }}</h3>
             </div>
-
         </section>
     </header>
-    <img src="{{ student.image}}" alt="">
-    <p><Strong>Name:</Strong> {{ student.fullname }}</p>
-    <p><Strong>Age: </Strong>{{ student.age }}</p>
-    <p><Strong>Carrer Interest:</Strong> {{ student.carrer_interest }}</p>
-    <P><Strong>Bosch Area:</Strong> {{ student.bosch_area }}</P>
-    <p><strong>About me:</strong>{{ student.aboutme }}</p>
+    <main>
+        <section class="card">
+            <div class="image">
+                <img src="{{ student.image}}" alt="">
+            </div>
+            <div class="information">
+                <p><Strong>Name:</Strong> {{ student.fullname }}</p>
+                <p><Strong>Age: </Strong> {{ student.age }}</p>
+                <p><Strong>Carrer Interest:</Strong>  {{ student.carrer_interest }}</p>
+                <P><Strong>Bosch Area:</Strong>  {{ student.bosch_area }}</P>
+            </div>
+        </section>
+        <p><strong>About me:</strong> {{ student.aboutme }}</p>
+    </main>
 </body>
 </html>
