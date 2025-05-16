@@ -1,0 +1,1 @@
+from models.instructor_model import InstructorModel
